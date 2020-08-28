@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom'
 import Form from "./left__components/form"
 import Cars from "./cars/cars"
+import AddFeature from "./cars/addFeature"
 
 class Left extends React.Component {
      state = {
@@ -24,7 +26,7 @@ class Left extends React.Component {
           count:prevState.count+1
       }})
     }
-    deleteItem = (index) => {
+     deleteItem = (index) => {
            const cars = this.state.items.slice();
            cars.splice(index,1);
            this.setState((prevState)=>{
@@ -33,19 +35,26 @@ class Left extends React.Component {
               count:prevState.count-1
            }})   
           }
-    
+          addItem = (item) => {
+          }
+
     render() {
       return (
         <div className="left">
           <Form handleChange={this.handleChange} handleSubmit={this.handleSubmit}
           value={this.state.input} count={this.state.count}/>
-          <ul className="list-group">  <Cars  cars={this.state.items} delete= {this.deleteItem}></Cars> </ul>
+        
+          <ul className="list-group">  <Cars  cars={this.state.items} delete= {this.deleteItem}> </Cars> 
+         
+         
+
+          </ul>
+         
         </div>
+        
       )
     }
   }
-  
-  
-  
+
 
 export default Left;
