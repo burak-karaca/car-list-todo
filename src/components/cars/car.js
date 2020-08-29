@@ -1,6 +1,6 @@
 import React from 'react'
 
-import AddFeatures from './addFeatures'
+import AddFeatures from './Features/addFeatures'
 
 const car=(props)=> {
     return (

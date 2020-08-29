@@ -1,38 +1,55 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom'
 import Form from "./left__components/form"
 import Cars from "./cars/cars"
-import AddFeature from "./cars/addFeature"
 
 class Left extends React.Component {
      state = {
-        input: '',
-        items: [],
-        count:0
+        cars:{
+          input: '',
+          items: [],
+          count:0
+      },
+      features:[{
+        input:[],
+        style:[]}
+      ]
       }
     handleChange = (e) => {
       this.setState({
-        input: e.target.value
+        cars:{input: e.target.value,
+        items: [],
+        count:0}
+
       })
     }
    
-  
+    CreateFeature=()=>{
+      
+      this.setState(
+        
+      )
+    }
     handleSubmit = (e)  => {
       e.preventDefault();
       this.setState((prevState,props)=>{
         return {
-          input: '',
-          items: [...this.state.items,this.state.input],
-          count:prevState.count+1
+          cars:{
+            input: '',
+            items: [...this.state.cars.items,this.state.cars.input],
+            count:prevState.cars.count+1
+          }
       }})
     }
      deleteItem = (index) => {
-           const cars = this.state.items.slice();
+           const cars = this.state.cars.items.slice();
            cars.splice(index,1);
            this.setState((prevState)=>{
              return{
-              items: cars,
-              count:prevState.count-1
+              cars:{
+                input:prevState.cars.input,
+                items: cars,
+                count:prevState.cars.count-1
+              }
            }})   
           }
           addItem = (item) => {
@@ -42,9 +59,9 @@ class Left extends React.Component {
       return (
         <div className="left">
           <Form handleChange={this.handleChange} handleSubmit={this.handleSubmit}
-          value={this.state.input} count={this.state.count}/>
+          value={this.state.cars.input} count={this.state.cars.count}/>
         
-          <ul className="list-group">  <Cars  cars={this.state.items} delete= {this.deleteItem}> </Cars> 
+          <ul className="list-group">  <Cars createFeatures={this.CreateFeature} Features={this.state.features} cars={this.state.cars.items} delete= {this.deleteItem}> </Cars> 
          
          
 
